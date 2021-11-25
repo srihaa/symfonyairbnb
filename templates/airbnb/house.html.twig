@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}AirBnb{% endblock %}
+
+
+
+
+
+{% block body %}
+<style>
+    .articles{
+        border-radius:10px;
+        box-shadow: 0 4px 16px rgba(0,0,0,.25);
+        padding: 16px 20px;
+        margin-bottom: 60px;
+
+    
+    }
+    .articleimg {
+        border-radius:10px;
+        box-shadow: 0 4px 16px rgba(0,0,0,.25);
+        margin:10px;
+        
+      
+    }
+    .titre{
+            color: tomato;
+        font-family: 'Times New Roman', Times, serif;
+        text-align:center;
+    font-style:oblique;
+    font-weight:bold;
+}
+
+    </style>
+
+           
+
+    
+    <section class="articles container mt-5">
+        <article class="mb-5">
+            <h2 class="titre"> Dar Zaghouan </h2>
+
+            <div style="text-align:center;">
+                <img class="articleimg"src="assets/img/ar2.jpg" alt="">
+            </div>
+                <br/>
+                            <h2 class="badge badge-danger">
+                             House
+                             </h2>
+                <p>Welcome to Melon’s House Party! Did you know that the objects in your house sing and speak all day long? They just do so in key only dogs can hear. Enter, Melon, an eight-pound dog with a thousand-pound heart who is the key to a world right under our noses! She lives in a world full of friends; an always singing record player, a soulless computer, her bookshelf therapist and many more. But her best friend in the world is Couch. No musical adventure is too big for Melon and Couch as long as they can figure out a way to do it together. As Melon learns about herself and the world around her, she shows us how to appreciate the little things in life and the importance of friendship and family.</p>
+                
+          
+            </article>
+        </section>
+{% endblock %}
