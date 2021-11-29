@@ -1,5 +1,7 @@
 {% extends 'base.html.twig' %}
 
+{% form_theme commentForm 'bootstrap_5_layout.html.twig' %}
+
 {% block title %}Properties{% endblock %}
 
 {% block body %}
@@ -45,11 +47,18 @@
     font-weight:bold; 
     padding-top:9px;
 }
-
+.comment{
+    width:80px;
+    height:30px;
+        text-align:center;
+    font-style:oblique;
+    font-weight:bold; 
+    padding-top:9px;
+}
     </style>
 
            
-{% for house in houses %}
+
 
  <section class="articles container mt-5">
         <article class="mb-5">
@@ -58,27 +67,65 @@
             <div style="text-align:center;">
                 <img class="articleimg"src="assets/img/ar2.jpg" alt="">
             </div>
-                <br/>
+                <br/>       
+
+                <div>
                             <h2 class="badge badge-danger ville">
                              {{house.location.ville}}
                              </h2>
+                             <h2 class="badge badge-success comment">
+                             {{house.comments | length }} Comments
+                             </h2>
+                </div>
 
                 <div class="prix">
                 <h5>{{house.nightPrice}} TND </h5>
                 </div>
+
                 <div>
-                <h6>Rooms: {{house.room}}</h6>
+                 <h6>Rooms: {{house.room}}</h6>
                 <h6>For {{house.person}} Persons</h6>
                 <p>{{house.description}}</p>
                 </div>
-                <a class="btn btn-info container" href="{{path('propertieShow',{'id':house.id}) }}"> House Detail </a>
+
           
             </article>
+            {% if app.user == house.user %}
+             <a href="{{path('editHouse',{'id':house.id})}}" class="btn btn-warning"> Edit </a>
+            {% endif %}
+
         </section>
 
-{% endfor %}
+<hr>
+    <h5 class="container"> Comments : </h5>
+    <div style="padding-bottom:30px;">
+     {% for comment in house.comments %}
+      <section class="container">
+        
+        <div class="container mt-2">
+            <div class="row">
+                <div class="md-col-3" style="color:red;">
+                    <small>{{comment.ceatedAt | date('d-m-Y')}} at {{comment.ceatedAt | date('H:i')}}</small>
+                </div>
+            </div>
+            <p> {{comment.content}} </p>
+        </div>
+        
+    </section>
+    {% endfor %}
+<hr>
+    {% if app.user%}
+                <section class="container" >
+     <h2> Add Comment ... </h2>
+     {{form_start(commentForm)}}
+     {{form_widget(commentForm)}}
+     <button class="btn btn-success">Comment</button>
+     {{form_end(commentForm)}}
+    </section>
+    </div>
     
-   
+    {% endif %}
+    
 
        
 {% endblock %}

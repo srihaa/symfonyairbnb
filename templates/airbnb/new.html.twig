@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
+
+{% block title %}New House{% endblock %}
+
+{% block body %} 
+<style>
+.new{
+    padding-top:25px;
+    padding-bottom:25px;
+}
+</style>
+<div class="container new">
+<h1> Add New House</h1>
+
+{{form_start(form)}}
+{{form_widget(form)}}
+
+<button class="btn btn-success"> Add</button>
+{{form_end(form)}}
+</div>
+{% endblock %}

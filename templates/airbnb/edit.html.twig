@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme editForm 'bootstrap_5_layout.html.twig' %}
+
+{% block title %}Edit House{% endblock %}
+
+{% block body %} 
+
+<style>
+.edit{
+    padding-top:25px;
+    padding-bottom:25px;
+}
+</style>
+
+
+
+<div class="container edit">
+<h1> Edit Your House</h1>
+
+{{form_start(editForm)}}
+{{form_widget(editForm)}}
+
+<button class="btn btn-outline-secondary"> Edit</button>
+{{form_end(editForm)}}
+</div>
+{% endblock %}
