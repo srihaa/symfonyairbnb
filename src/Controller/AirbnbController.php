@@ -5,9 +5,12 @@ namespace App\Controller;
 use DateTime;
 use App\Entity\House;
 use App\Entity\Comment;
+use App\Entity\Location;
 use App\Form\HouseType;
 use App\Form\CommentType;
+use App\Form\SearchType;
 use App\Repository\HouseRepository;
+use App\Repository\LocationRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Security;
@@ -35,14 +38,25 @@ class AirbnbController extends AbstractController
     
 
 
-    #[Route('/properties', name: 'properties')]
+    #[Route('/myhouses', name: 'myhouses')]
     public function properties(HouseRepository $houseRepository)
+    {
+        $houses = $houseRepository->findAll();
+        return $this->render('airbnb/myhouse.html.twig', [
+            'houses' => $houses
+        ]);
+    }
+
+    #[Route('/properties', name: 'houses')]
+    public function houses(HouseRepository $houseRepository)
     {
         $houses = $houseRepository->findAll();
         return $this->render('airbnb/properties.html.twig', [
             'houses' => $houses
         ]);
     }
+
+
 
     #[Route('/propertie/new', name: 'newHouse')]
     public function new (Request $request )
@@ -105,5 +119,13 @@ class AirbnbController extends AbstractController
         ]);
     }
 
+    #[Route('/search', name: 'housesearch')]
+    public function search(Request $request)
+    {
+        $searchForm=$this->createForm(SearchType::class);
+        return $this->render('airbnb/search.html.twig', [
+            'search_form'=> $searchForm->createView()
+        ]);
+    }
 
 }

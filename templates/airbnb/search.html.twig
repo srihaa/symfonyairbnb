@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme search_form 'bootstrap_5_layout.html.twig' %}
+
+{% block title %}Properties{% endblock %}
+
+{% block body %}
+<style>
+.search{
+    padding-top:25px;
+    padding-bottom:25px;
+}
+</style>
+
+<div class="container search">
+<h1> Search House</h1>
+
+{{form_start(search_form)}}
+{{form_widget(search_form)}}
+
+{{form_end(search_form)}}
+</div>
+
+{% endblock %}

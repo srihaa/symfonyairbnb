@@ -5,7 +5,7 @@
 {% block body %}
 
  <style>
-    .articles{
+       .articles{
         border-radius:10px;
         box-shadow: 0 4px 16px rgba(0,0,0,.25);
         padding: 16px 20px;
@@ -111,10 +111,11 @@ body{
     }
     </style>
 
+
            
-<body>
 {% for house in houses %}
-<div class="blog-post">
+{% if app.user == house.user %}
+ <div class="blog-post">
 
     <div class="blog-post-img">
         <img src="assets/img/ar2.jpg" alt="house">
@@ -151,7 +152,9 @@ body{
     </div>
 
 </div>
+{% endif %}
 {% endfor %}
+    
 
-      </body> 
+       
 {% endblock %}
